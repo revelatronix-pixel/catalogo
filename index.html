@@ -11,10 +11,8 @@
   .header {
     background: linear-gradient(135deg, #0a0a0f 0%, #1a1030 50%, #0f0a1e 100%);
     border-bottom: 1px solid #ffffff12;
-    padding: 16px 24px 14px;
-    text-align: center;
-    position: sticky; top: 0; z-index: 100;
-    backdrop-filter: blur(16px);
+    padding: 16px 24px 14px; text-align: center;
+    position: sticky; top: 0; z-index: 100; backdrop-filter: blur(16px);
   }
   .header-brand { display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 4px; }
   .header-logo-img { height: 44px; object-fit: contain; border-radius: 8px; }
@@ -24,11 +22,9 @@
 
   .upload-banner {
     background: #16151f; border: 1.5px dashed #a78bfa44; border-radius: 14px;
-    padding: 16px; text-align: center; margin: 18px auto 0;
-    max-width: 900px; cursor: pointer; transition: border-color 0.2s; display: block;
-    margin-left: 16px; margin-right: 16px;
+    padding: 16px; text-align: center; margin: 18px 16px 0;
+    cursor: pointer; transition: border-color 0.2s; display: block;
   }
-  @media(min-width:932px){ .upload-banner { margin-left: auto; margin-right: auto; } }
   .upload-banner:hover { border-color: #a78bfa88; }
   .upload-banner input { display: none; }
   .upload-icon { font-size: 26px; margin-bottom: 5px; }
@@ -41,10 +37,16 @@
   .search-input:focus { border-color: #a78bfa55; }
   .search-input::placeholder { color: #4b5563; }
 
-  .pills { display: flex; gap: 7px; flex-wrap: wrap; margin-bottom: 11px; }
+  .pills { display: flex; gap: 7px; flex-wrap: wrap; margin-bottom: 14px; }
   .pill { padding: 5px 13px; border-radius: 20px; border: 1.5px solid #ffffff18; background: transparent; color: #9ca3af; font-weight: 600; font-size: 12px; cursor: pointer; transition: all 0.15s; font-family: inherit; }
   .pill.active { border-color: #a78bfa; background: #a78bfa22; color: #a78bfa; }
   .pill:hover:not(.active) { border-color: #ffffff35; color: #d1d5db; }
+
+  .slider-wrap { margin-bottom: 16px; }
+  .slider-label { display: flex; justify-content: space-between; margin-bottom: 7px; font-size: 13px; }
+  .slider-label span:first-child { color: #6b7280; }
+  .slider-label span:last-child { color: #a78bfa; font-weight: 700; }
+  input[type="range"] { width: 100%; accent-color: #a78bfa; cursor: pointer; }
 
   .results-count { font-size: 12px; color: #4b5563; margin-bottom: 13px; }
 
@@ -57,16 +59,16 @@
   .card { background: #13121c; border-radius: 16px; border: 1px solid #ffffff0f; overflow: hidden; transition: transform 0.18s, border-color 0.18s; }
   .card:hover { transform: translateY(-3px); border-color: #a78bfa33; }
 
-  .card-image { background: linear-gradient(135deg, #1e1b2e, #2d1f3d); display: flex; align-items: center; justify-content: center; height: 150px; overflow: hidden; }
-  .card-image img { width: 100%; height: 100%; object-fit: contain; padding: 10px; }
-  .card-image-fallback { font-size: 50px; }
+  .card-image { background: linear-gradient(135deg, #1e1b2e, #2d1f3d); display: flex; align-items: center; justify-content: center; height: 160px; overflow: hidden; }
+  .card-image img { width: 100%; height: 100%; object-fit: contain; padding: 12px; }
+  .card-fallback { font-size: 52px; }
 
   .card-body { padding: 13px 14px 12px; }
   .card-meta { font-size: 10px; color: #6b7280; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 3px; }
   .card-model { font-size: 15px; font-weight: 700; margin-bottom: 10px; color: #f1f1f3; line-height: 1.3; }
 
   .tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
-  .tag { font-size: 10px; font-weight: 600; padding: 3px 8px; border-radius: 6px; display: flex; align-items: center; gap: 3px; border: 1px solid; }
+  .tag { font-size: 10px; font-weight: 600; padding: 3px 9px; border-radius: 6px; display: flex; align-items: center; gap: 3px; border: 1px solid; }
 
   .price-row { display: flex; align-items: center; justify-content: space-between; }
   .price { font-size: 18px; font-weight: 800; color: #f1f1f3; }
@@ -77,58 +79,59 @@
 
   .empty { text-align: center; margin-top: 50px; color: #4b5563; padding: 0 16px; }
   .empty-icon { font-size: 32px; margin-bottom: 8px; }
-  .footer { text-align: center; margin-top: 40px; color: #374151; font-size: 11px; line-height: 1.8; }
+  .footer { text-align: center; margin-top: 40px; color: #374151; font-size: 11px; line-height: 1.8; padding: 0 16px; }
 </style>
 </head>
 <body>
 
-<!-- HEADER -->
 <div class="header">
   <div class="header-brand">
     <img class="header-logo-img"
-      src="https://drive.google.com/thumbnail?id=1O9xxm9wBOHj0biNn1Rv7ucbpedq53fwd&sz=w200"
+      src="https://lh3.googleusercontent.com/d/1O9xxm9wBOHj0biNn1Rv7ucbpedq53fwd"
       alt="MarktStore"
-      onerror="this.style.display='none'; document.getElementById('logoText').style.display='block'" />
+      onerror="this.style.display='none';document.getElementById('logoText').style.display='block'" />
     <span id="logoText" class="header-logo-text" style="display:none">MarktStore</span>
     <span class="header-badge">iPhone</span>
   </div>
   <p class="header-sub">iPhones reacondicionados · Garantía incluida · Envíos a Chile 🇨🇱</p>
 </div>
 
-<!-- UPLOAD -->
-<label class="upload-banner" id="uploadBanner">
+<label class="upload-banner">
   <input type="file" id="csvFile" accept=".csv" onchange="loadCSV(event)" />
   <div class="upload-icon">📂</div>
   <div class="upload-title">Cargar Stock CSV</div>
-  <div class="upload-sub">Exporta tu Google Sheet → Archivo → Descargar → CSV y súbelo aquí</div>
+  <div class="upload-sub">Archivo → Descargar → CSV desde tu Google Sheet</div>
   <div class="upload-filename" id="fileName"></div>
 </label>
 
-<!-- FILTERS -->
 <div class="filters" id="filtersSection" style="display:none">
   <input class="search-input" id="searchInput" placeholder="🔍  Buscar modelo o color..." oninput="render()" />
   <div class="pills" id="pills"></div>
+
+  <div class="slider-wrap">
+    <div class="slider-label">
+      <span>Precio máximo</span>
+      <span id="priceLabel">$2.000.000</span>
+    </div>
+    <input type="range" id="priceRange" min="0" max="2000000" step="50000" value="2000000" oninput="updatePrice()" />
+  </div>
+
   <p class="results-count" id="resultsCount"></p>
 </div>
 
-<!-- STATS -->
 <div class="stats-bar" id="statsBar" style="display:none"></div>
-
-<!-- GRID -->
 <div class="grid" id="grid"></div>
 <div class="empty" id="empty" style="display:none">
   <div class="empty-icon">🔍</div>
   <p>Sin resultados para ese filtro</p>
 </div>
-
-<!-- FOOTER -->
 <div class="footer" id="footer" style="display:none">
   Todos los equipos incluyen garantía · Av. Nueva Providencia 2234, Local P30<br>
   WhatsApp: +56 9 4594 6961 · contacto@marktstoreiphone.cl · www.marktstoreiphone.cl
 </div>
 
 <script>
-// ── Mapa modelo → ID imagen Google Drive ────────────────────────────────────
+// Fotos via lh3.googleusercontent.com (no tiene restricción CORS como drive.google.com)
 const MODEL_IMAGES = {
   "IPHONE 17 AIR":      "16J27EGoxN8Q-aR5BUPrVjoEyEOwz8hnR",
   "IPHONE 17 PRO MAX":  "1tuZGZti4mpuMJ5Wl75lcBns1ZpOAMn0A",
@@ -168,16 +171,23 @@ const MODEL_IMAGES = {
 
 function getImageUrl(modelo) {
   const m = modelo.toUpperCase().trim();
-  if (MODEL_IMAGES[m]) return `https://drive.google.com/thumbnail?id=${MODEL_IMAGES[m]}&sz=w300`;
+  if (MODEL_IMAGES[m]) return `https://lh3.googleusercontent.com/d/${MODEL_IMAGES[m]}`;
   let best = null, bestLen = 0;
   for (const key of Object.keys(MODEL_IMAGES)) {
     if (m.includes(key) && key.length > bestLen) { best = key; bestLen = key.length; }
   }
-  return best ? `https://drive.google.com/thumbnail?id=${MODEL_IMAGES[best]}&sz=w300` : null;
+  return best ? `https://lh3.googleusercontent.com/d/${MODEL_IMAGES[best]}` : null;
 }
 
 let allPhones = [];
 let activeFilter = "Todos";
+let maxPrice = 2000000;
+
+function updatePrice() {
+  maxPrice = Number(document.getElementById("priceRange").value);
+  document.getElementById("priceLabel").textContent = "$" + maxPrice.toLocaleString("es-CL");
+  render();
+}
 
 function loadCSV(event) {
   const file = event.target.files[0];
@@ -209,23 +219,39 @@ function parseCSV(text) {
     const modelo    = (cols[1] || "").trim();
     const capacidad = (cols[2] || "").trim();
     const color     = (cols[3] || "").trim();
-    const bateria   = (cols[4] || "").trim();
     const estado    = (cols[9] || "").trim();
     const precioRaw = (cols[10] || "").trim();
-    if (!modelo || estado.toLowerCase() !== "disponible") return;
+
+    // Solo iPhones
+    if (!modelo || !modelo.toUpperCase().includes("IPHONE")) return;
+    // Solo disponibles
+    if (estado.toLowerCase() !== "disponible") return;
+
     const precio = parseInt(precioRaw.replace(/\$|\.|,/g, "")) || 0;
-    phones.push({ id: idx, modelo, capacidad, color, bateria, precio });
+    phones.push({ id: idx, modelo, capacidad, color, precio });
   });
   allPhones = phones;
+
+  // Slider: ajustar máximo al precio más alto del stock actual
+  const prices = phones.map(p => p.precio).filter(p => p > 0);
+  const topPrice = prices.length ? Math.max(...prices) : 2000000;
+  const sliderMax = Math.ceil(topPrice / 100000) * 100000;
+  const slider = document.getElementById("priceRange");
+  slider.max = sliderMax;
+  slider.value = sliderMax;
+  maxPrice = sliderMax;
+  document.getElementById("priceLabel").textContent = "$" + sliderMax.toLocaleString("es-CL");
+
   buildUI();
 }
 
 function buildUI() {
+  // Pills por familia de modelo
   const families = [...new Set(allPhones.map(p => {
     const m = p.modelo.toUpperCase().trim();
     const match = m.match(/IPHONE\s+(\d+\s*(PRO MAX|PRO|PLUS|MINI|AIR|SE.*)?)/i);
     return match ? "IPHONE " + match[1].trim() : m.split(" ").slice(0,2).join(" ");
-  }))].slice(0, 9);
+  }))].slice(0, 10);
 
   const pillsEl = document.getElementById("pills");
   pillsEl.innerHTML = "";
@@ -253,14 +279,6 @@ function buildUI() {
   render();
 }
 
-function batColor(bat) {
-  const n = parseInt(bat);
-  if (isNaN(n) || bat === "-%") return { bg: "#37415133", color: "#9ca3af", bc: "#ffffff18" };
-  if (n >= 90) return { bg: "#d1fae522", color: "#10b981", bc: "#10b98144" };
-  if (n >= 80) return { bg: "#fef9c322", color: "#f59e0b", bc: "#f59e0b44" };
-  return { bg: "#fee2e222", color: "#ef4444", bc: "#ef444444" };
-}
-
 function render() {
   const search = document.getElementById("searchInput").value.toLowerCase();
   const filtered = allPhones.filter(p => {
@@ -268,7 +286,8 @@ function render() {
       p.modelo.toUpperCase().includes(activeFilter.replace("IPHONE ", "").trim());
     const matchSearch = p.modelo.toLowerCase().includes(search) ||
       p.color.toLowerCase().includes(search);
-    return matchFilter && matchSearch;
+    const matchPrice = p.precio === 0 || p.precio <= maxPrice;
+    return matchFilter && matchSearch && matchPrice;
   });
 
   document.getElementById("resultsCount").textContent =
@@ -276,20 +295,18 @@ function render() {
 
   const grid = document.getElementById("grid");
   const empty = document.getElementById("empty");
-
   if (!filtered.length) { grid.innerHTML = ""; empty.style.display = "block"; return; }
   empty.style.display = "none";
 
   grid.innerHTML = filtered.map(phone => {
-    const bat = batColor(phone.bateria);
     const imgUrl = getImageUrl(phone.modelo);
     const hasPrice = phone.precio > 0;
     const waMsg = encodeURIComponent(
       `Hola! Me interesa el ${phone.modelo}${phone.capacidad ? " " + phone.capacidad + "GB" : ""} ${phone.color}. ¿Está disponible?`
     );
     const imgHtml = imgUrl
-      ? `<img src="${imgUrl}" alt="${phone.modelo}" onerror="this.parentElement.innerHTML='<div class=\\'card-image-fallback\\'>📱</div>'" />`
-      : `<div class="card-image-fallback">📱</div>`;
+      ? `<img src="${imgUrl}" alt="${phone.modelo}" onerror="this.parentElement.innerHTML='<div class=\\'card-fallback\\'>📱</div>'" />`
+      : `<div class="card-fallback">📱</div>`;
 
     return `
       <div class="card">
@@ -298,9 +315,7 @@ function render() {
           <div class="card-meta">${phone.capacidad ? phone.capacidad + "GB" : ""} · ${phone.color}</div>
           <div class="card-model">${phone.modelo}</div>
           <div class="tags">
-            <span class="tag" style="background:${bat.bg};color:${bat.color};border-color:${bat.bc}">
-              🔋 ${phone.bateria && phone.bateria !== "-%" ? phone.bateria : "S/D"}
-            </span>
+            <span class="tag" style="background:#d1fae522;color:#10b981;border-color:#10b98144">🔋 100%</span>
             <span class="tag" style="background:#d1fae522;color:#10b981;border-color:#10b98144">🟢 Disponible</span>
           </div>
           <div class="price-row">
@@ -308,9 +323,7 @@ function render() {
               <div class="price">${hasPrice ? "$" + phone.precio.toLocaleString("es-CL") : "Consultar"}</div>
               ${hasPrice ? '<div class="price-sub">CLP</div>' : ""}
             </div>
-            <a href="https://wa.me/56945946961?text=${encodeURIComponent(`Hola! Me interesa el ${phone.modelo}${phone.capacidad ? " " + phone.capacidad + "GB" : ""} ${phone.color}. ¿Está disponible?`)}" target="_blank" class="btn-wa">
-              💬 Consultar
-            </a>
+            <a href="https://wa.me/56945946961?text=${waMsg}" target="_blank" class="btn-wa">💬 Consultar</a>
           </div>
         </div>
       </div>`;
