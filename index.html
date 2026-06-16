@@ -20,45 +20,42 @@
   .header-badge { font-size: 11px; background: #a78bfa22; color: #a78bfa; border: 1px solid #a78bfa44; border-radius: 6px; padding: 2px 8px; font-weight: 700; }
   .header-sub { font-size: 12px; color: #6b7280; margin-top: 2px; }
 
-  /* ADMIN PANEL - oculto por defecto */
-  .admin-toggle { position: fixed; bottom: 20px; right: 20px; z-index: 999; background: #1f1d2e; border: 1px solid #a78bfa44; border-radius: 50px; padding: 10px 18px; font-size: 12px; color: #6b7280; cursor: pointer; font-family: inherit; }
+  .admin-toggle { position: fixed; bottom: 20px; right: 20px; z-index: 999; background: #1f1d2e; border: 1px solid #a78bfa22; border-radius: 50px; padding: 10px 16px; font-size: 12px; color: #37364a; cursor: pointer; font-family: inherit; }
+  .admin-toggle:hover { color: #6b7280; }
   .admin-panel { display: none; position: fixed; bottom: 70px; right: 20px; z-index: 998; background: #16151f; border: 1.5px solid #a78bfa44; border-radius: 14px; padding: 16px; width: 300px; box-shadow: 0 8px 32px #00000080; }
   .admin-panel.open { display: block; }
-  .admin-panel label { display: block; cursor: pointer; }
-  .admin-upload-icon { font-size: 22px; margin-bottom: 4px; }
-  .admin-title { font-size: 13px; font-weight: 700; color: #a78bfa; margin-bottom: 2px; }
-  .admin-sub { font-size: 11px; color: #6b7280; }
-  .admin-filename { font-size: 12px; color: #10b981; font-weight: 600; margin-top: 5px; }
-  .admin-panel input[type=file] { display: none; }
   .admin-panel input[type=password] { width: 100%; padding: 8px 12px; border-radius: 8px; border: 1px solid #ffffff18; background: #0a0a0f; color: #f1f1f3; font-size: 13px; outline: none; margin-bottom: 10px; font-family: inherit; }
   .admin-panel input[type=password]:focus { border-color: #a78bfa55; }
-  .admin-btn { width: 100%; padding: 8px; border-radius: 8px; border: none; background: #a78bfa22; color: #a78bfa; font-size: 13px; font-weight: 700; cursor: pointer; font-family: inherit; border: 1px solid #a78bfa44; }
+  .admin-btn { width: 100%; padding: 8px; border-radius: 8px; border: 1px solid #a78bfa44; background: #a78bfa22; color: #a78bfa; font-size: 13px; font-weight: 700; cursor: pointer; font-family: inherit; }
+  .admin-panel input[type=file] { display: none; }
+  .upload-area { border: 1.5px dashed #a78bfa44; border-radius: 10px; padding: 14px; text-align: center; cursor: pointer; margin-top: 10px; }
+  .upload-area:hover { border-color: #a78bfa88; }
+  .upload-icon { font-size: 22px; margin-bottom: 4px; }
+  .upload-title { font-size: 13px; font-weight: 700; color: #a78bfa; margin-bottom: 2px; }
+  .upload-sub { font-size: 11px; color: #6b7280; }
+  .upload-filename { font-size: 12px; color: #10b981; font-weight: 600; margin-top: 5px; }
 
   .filters { padding: 14px 16px 0; max-width: 900px; margin: 0 auto; }
   .search-input { width: 100%; padding: 10px 16px; border-radius: 12px; border: 1px solid #ffffff18; background: #16151f; color: #f1f1f3; font-size: 14px; outline: none; margin-bottom: 11px; transition: border-color 0.2s; }
   .search-input:focus { border-color: #a78bfa55; }
   .search-input::placeholder { color: #4b5563; }
-
   .pills { display: flex; gap: 7px; flex-wrap: wrap; margin-bottom: 14px; }
   .pill { padding: 5px 13px; border-radius: 20px; border: 1.5px solid #ffffff18; background: transparent; color: #9ca3af; font-weight: 600; font-size: 12px; cursor: pointer; transition: all 0.15s; font-family: inherit; }
   .pill.active { border-color: #a78bfa; background: #a78bfa22; color: #a78bfa; }
   .pill:hover:not(.active) { border-color: #ffffff35; color: #d1d5db; }
-
   .slider-wrap { margin-bottom: 16px; }
   .slider-label { display: flex; justify-content: space-between; margin-bottom: 7px; font-size: 13px; }
   .slider-label span:first-child { color: #6b7280; }
   .slider-label span:last-child { color: #a78bfa; font-weight: 700; }
   input[type="range"] { width: 100%; accent-color: #a78bfa; cursor: pointer; }
-
   .results-count { font-size: 12px; color: #4b5563; margin-bottom: 13px; }
 
   .stats-bar { max-width: 900px; margin: 0 auto 14px; padding: 0 16px; display: flex; gap: 8px; flex-wrap: wrap; }
   .stat-pill { background: #16151f; border: 1px solid #ffffff0f; border-radius: 10px; padding: 7px 13px; font-size: 12px; color: #9ca3af; }
   .stat-pill strong { color: #f1f1f3; }
 
-  .empty-state { text-align: center; padding: 60px 20px; color: #4b5563; }
-  .empty-state .icon { font-size: 48px; margin-bottom: 12px; }
-  .empty-state p { font-size: 14px; }
+  .no-stock { text-align: center; padding: 60px 20px; color: #4b5563; }
+  .no-stock .icon { font-size: 48px; margin-bottom: 12px; }
 
   .grid { max-width: 900px; margin: 0 auto; padding: 0 16px; display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 14px; }
   .card { background: #13121c; border-radius: 16px; border: 1px solid #ffffff0f; overflow: hidden; transition: transform 0.18s, border-color 0.18s; }
@@ -83,7 +80,6 @@
 </head>
 <body>
 
-<!-- HEADER -->
 <div class="header">
   <div class="header-brand">
     <img class="header-logo-img"
@@ -96,8 +92,7 @@
   <p class="header-sub">iPhones reacondicionados · Garantía incluida · Envíos a Chile 🇨🇱</p>
 </div>
 
-<!-- FILTERS (siempre visibles) -->
-<div class="filters" id="filtersSection">
+<div class="filters">
   <input class="search-input" id="searchInput" placeholder="🔍  Buscar modelo o color..." oninput="render()" />
   <div class="pills" id="pills"></div>
   <div class="slider-wrap">
@@ -111,16 +106,16 @@
 </div>
 
 <div class="stats-bar" id="statsBar" style="display:none"></div>
+
+<div class="no-stock" id="noStock">
+  <div class="icon">📱</div>
+  <p style="font-size:14px;color:#4b5563">Cargando stock...</p>
+</div>
+
 <div class="grid" id="grid"></div>
 <div class="empty" id="empty" style="display:none">
   <div class="empty-icon">🔍</div>
   <p>Sin resultados para ese filtro</p>
-</div>
-
-<!-- ESTADO INICIAL: sin stock cargado -->
-<div class="empty-state" id="noStock">
-  <div class="icon">📱</div>
-  <p>Stock cargándose...</p>
 </div>
 
 <div class="footer" id="footer" style="display:none">
@@ -128,48 +123,41 @@
   WhatsApp: +56 9 4594 6961 · www.marktstoreiphone.cl
 </div>
 
-<!-- BOTÓN ADMIN (esquina inferior derecha, discreto) -->
-<button class="admin-toggle" onclick="toggleAdmin()" id="adminToggle">⚙</button>
+<!-- BOTÓN ADMIN discreto -->
+<button class="admin-toggle" onclick="toggleAdmin()">⚙</button>
 
-<!-- PANEL ADMIN -->
 <div class="admin-panel" id="adminPanel">
-  <div style="margin-bottom:10px">
-    <input type="password" id="adminPass" placeholder="Contraseña admin" />
+  <div id="passSection">
+    <input type="password" id="adminPass" placeholder="Contraseña admin" onkeydown="if(event.key==='Enter')checkPass()" />
     <button class="admin-btn" onclick="checkPass()">Ingresar</button>
   </div>
   <div id="uploadArea" style="display:none">
     <label>
       <input type="file" id="csvFile" accept=".csv" onchange="loadCSV(event)" />
-      <div style="border:1.5px dashed #a78bfa44; border-radius:10px; padding:14px; text-align:center; cursor:pointer;">
-        <div class="admin-upload-icon">📂</div>
-        <div class="admin-title">Cargar Stock CSV</div>
-        <div class="admin-sub">Archivo → Descargar → CSV desde Google Sheet</div>
-        <div class="admin-filename" id="fileName"></div>
+      <div class="upload-area">
+        <div class="upload-icon">📂</div>
+        <div class="upload-title">Cargar Stock CSV</div>
+        <div class="upload-sub">Archivo → Descargar → CSV desde Google Sheet</div>
+        <div class="upload-filename" id="fileName"></div>
       </div>
     </label>
   </div>
 </div>
 
 <script>
-// ── Contraseña admin ─────────────────────────────────────────────────────────
-const ADMIN_PASSWORD = "markt2024"; // Cambia esto
+const ADMIN_PASSWORD = "markt2024";
 
-function toggleAdmin() {
-  document.getElementById("adminPanel").classList.toggle("open");
+// iPhones soportados (11 en adelante)
+const MODELOS_VALIDOS = [
+  "IPHONE 11", "IPHONE 12", "IPHONE 13", "IPHONE 14",
+  "IPHONE 15", "IPHONE 16", "IPHONE 17", "IPHONE SE"
+];
+
+function esiPhoneValido(modelo) {
+  const m = modelo.toUpperCase().trim();
+  return MODELOS_VALIDOS.some(v => m.includes(v));
 }
 
-function checkPass() {
-  const pass = document.getElementById("adminPass").value;
-  if (pass === ADMIN_PASSWORD) {
-    document.getElementById("uploadArea").style.display = "block";
-    document.getElementById("adminPass").style.display = "none";
-    document.querySelector(".admin-btn").style.display = "none";
-  } else {
-    alert("Contraseña incorrecta");
-  }
-}
-
-// ── Mapa modelo → ID imagen Google Drive (carpeta pública) ──────────────────
 const MODEL_IMAGES = {
   "IPHONE 17 AIR":      "16J27EGoxN8Q-aR5BUPrVjoEyEOwz8hnR",
   "IPHONE 17 PRO MAX":  "1tuZGZti4mpuMJ5Wl75lcBns1ZpOAMn0A",
@@ -200,8 +188,6 @@ const MODEL_IMAGES = {
   "IPHONE 11 PRO MAX":  "157qhJvI_0rl5p8wmme0Qf8UAwyoyW_Vn",
   "IPHONE 11 PRO":      "1E1Izky8wBu7NNmxnwL2wCppXjCvtxWfd",
   "IPHONE 11":          "1I2VcfoqEUNfyl6t25qV__PwBMludAWyo",
-  "IPHONE XS MAX":      "1IdUlSbztOJ7GcxdLPDiKgbVk9AQ8upUj",
-  "IPHONE XS":          "1pcvoCxM_mEeJUV3iiho-LuCdqKnaucKk",
   "IPHONE SE 3RA GEN":  "1nThG-yNOajE5G5qVYa4wGQEds1-Ykldz",
   "IPHONE SE 2020":     "1nThG-yNOajE5G5qVYa4wGQEds1-Ykldz",
   "IPHONE SE":          "1nThG-yNOajE5G5qVYa4wGQEds1-Ykldz",
@@ -217,9 +203,20 @@ function getImageUrl(modelo) {
   return best ? `https://drive.google.com/uc?export=view&id=${MODEL_IMAGES[best]}` : null;
 }
 
-let allPhones = [];
-let activeFilter = "Todos";
-let maxPrice = 2000000;
+let allPhones = [], activeFilter = "Todos", maxPrice = 2000000;
+
+function toggleAdmin() {
+  document.getElementById("adminPanel").classList.toggle("open");
+}
+
+function checkPass() {
+  if (document.getElementById("adminPass").value === ADMIN_PASSWORD) {
+    document.getElementById("passSection").style.display = "none";
+    document.getElementById("uploadArea").style.display = "block";
+  } else {
+    alert("Contraseña incorrecta");
+  }
+}
 
 function updatePrice() {
   maxPrice = Number(document.getElementById("priceRange").value);
@@ -260,20 +257,21 @@ function parseCSV(text) {
     const estado    = (cols[9] || "").trim();
     const precioRaw = (cols[10] || "").trim();
 
-    if (!modelo || !modelo.toUpperCase().includes("IPHONE")) return;
+    // Solo iPhones 11 en adelante + SE
+    if (!modelo || !esiPhoneValido(modelo)) return;
     if (estado.toLowerCase() !== "disponible") return;
 
     const precio = parseInt(precioRaw.replace(/\$|\.|,/g, "")) || 0;
     phones.push({ id: idx, modelo, capacidad, color, precio });
   });
+
   allPhones = phones;
 
   const prices = phones.map(p => p.precio).filter(p => p > 0);
   const topPrice = prices.length ? Math.max(...prices) : 2000000;
   const sliderMax = Math.ceil(topPrice / 100000) * 100000;
   const slider = document.getElementById("priceRange");
-  slider.max = sliderMax;
-  slider.value = sliderMax;
+  slider.max = sliderMax; slider.value = sliderMax;
   maxPrice = sliderMax;
   document.getElementById("priceLabel").textContent = "$" + sliderMax.toLocaleString("es-CL");
 
@@ -318,9 +316,8 @@ function render() {
   const filtered = allPhones.filter(p => {
     const matchFilter = activeFilter === "Todos" ||
       p.modelo.toUpperCase().includes(activeFilter.replace("IPHONE ", "").trim());
-    const matchSearch = p.modelo.toLowerCase().includes(search) ||
-      p.color.toLowerCase().includes(search);
-    const matchPrice = p.precio === 0 || p.precio <= maxPrice;
+    const matchSearch = p.modelo.toLowerCase().includes(search) || p.color.toLowerCase().includes(search);
+    const matchPrice  = p.precio === 0 || p.precio <= maxPrice;
     return matchFilter && matchSearch && matchPrice;
   });
 
