@@ -61,6 +61,13 @@
   .empty { text-align: center; margin-top: 50px; color: #4b5563; padding: 0 16px; }
   .empty-icon { font-size: 32px; margin-bottom: 8px; }
 
+  .pagination { max-width: 900px; margin: 24px auto 0; padding: 0 16px; display: flex; justify-content: center; align-items: center; gap: 6px; flex-wrap: wrap; }
+  .page-btn { min-width: 34px; height: 34px; padding: 0 8px; border-radius: 8px; border: 1px solid #ffffff18; background: #16151f; color: #9ca3af; font-size: 13px; font-weight: 600; cursor: pointer; font-family: inherit; transition: all 0.15s; }
+  .page-btn:hover:not(:disabled) { border-color: #a78bfa55; color: #d1d5db; }
+  .page-btn.active { background: #a78bfa22; border-color: #a78bfa; color: #a78bfa; }
+  .page-btn:disabled { opacity: 0.3; cursor: default; }
+  .page-dots { color: #4b5563; padding: 0 4px; font-size: 13px; }
+
   /* Admin */
   .admin-toggle { position: fixed; bottom: 20px; right: 20px; z-index: 999; background: #0a0a0f; border: 1px solid #ffffff08; border-radius: 50px; padding: 10px 14px; font-size: 11px; color: #1f1d2e; cursor: pointer; font-family: inherit; }
   .admin-toggle:hover { color: #4b5563; }
@@ -89,13 +96,13 @@
 </div>
 
 <div class="filters" id="filtersSection" style="display:none">
-  <input class="search-input" id="searchInput" placeholder="🔍  Buscar modelo o color..." oninput="render()" />
+  <input class="search-input" id="searchInput" placeholder="🔍  Buscar modelo o color..." oninput="currentPage=1;render()" />
   <div class="pills" id="pills"></div>
   <div class="slider-wrap">
     <div class="slider-label"><span>Precio máximo</span><span id="priceLabel">Todos</span></div>
     <input type="range" id="priceRange" min="0" max="2000000" step="10000" value="2000000" oninput="updatePrice()" />
   </div>
-  <p class="results-count" id="resultsCount"></p>
+  <p class="results-count" id="resultsCount" style="display:none"></p>
 </div>
 
 <div class="stats-bar" id="statsBar" style="display:none"></div>
@@ -106,6 +113,7 @@
 </div>
 
 <div class="grid" id="grid"></div>
+<div class="pagination" id="pagination"></div>
 <div class="empty" id="empty" style="display:none">
   <div class="empty-icon">🔍</div>
   <p>Sin resultados para ese filtro</p>
@@ -179,6 +187,8 @@ function getImageUrl(modelo) {
 }
 
 let allPhones = [], activeFilter = "Todos", maxPrice = 0;
+let currentPage = 1;
+const ITEMS_PER_PAGE = 20;
 
 function toggleAdmin() { document.getElementById("adminPanel").classList.toggle("open"); }
 function checkPass() {
@@ -193,6 +203,7 @@ function updatePrice() {
   const label = maxPrice >= Number(document.getElementById("priceRange").max)
     ? "Todos" : "$" + maxPrice.toLocaleString("es-CL");
   document.getElementById("priceLabel").textContent = label;
+  currentPage = 1;
   render();
 }
 
@@ -241,6 +252,7 @@ function buildUI() {
     btn.textContent = f;
     btn.onclick = () => {
       activeFilter = f;
+      currentPage = 1;
       document.querySelectorAll(".pill").forEach(p => p.classList.remove("active"));
       btn.classList.add("active");
       render();
@@ -250,11 +262,6 @@ function buildUI() {
 
   document.getElementById("filtersSection").style.display = "block";
   document.getElementById("footer").style.display = "block";
-  document.getElementById("statsBar").style.display = "flex";
-  document.getElementById("statsBar").innerHTML = `
-    <div class="stat-pill">🟢 Disponibles: <strong>${allPhones.length}</strong></div>
-    <div class="stat-pill">📱 Modelos únicos: <strong>${new Set(allPhones.map(p=>p.modelo.trim())).size}</strong></div>
-  `;
   render();
 }
 
@@ -276,15 +283,17 @@ function render() {
     return b.precio - a.precio;
   });
 
-  document.getElementById("resultsCount").textContent =
-    `${filtered.length} equipo${filtered.length !== 1 ? "s" : ""} disponible${filtered.length !== 1 ? "s" : ""}`;
-
   const grid = document.getElementById("grid");
   const empty = document.getElementById("empty");
-  if (!filtered.length) { grid.innerHTML = ""; empty.style.display = "block"; return; }
+  if (!filtered.length) { grid.innerHTML = ""; empty.style.display = "block"; document.getElementById("pagination").innerHTML = ""; return; }
   empty.style.display = "none";
 
-  grid.innerHTML = filtered.map(phone => {
+  const totalPages = Math.ceil(filtered.length / ITEMS_PER_PAGE);
+  if (currentPage > totalPages) currentPage = 1;
+  const startIdx = (currentPage - 1) * ITEMS_PER_PAGE;
+  const pageItems = filtered.slice(startIdx, startIdx + ITEMS_PER_PAGE);
+
+  grid.innerHTML = pageItems.map(phone => {
     const imgUrl = getImageUrl(phone.modelo);
     const hasPrice = phone.precio > 0;
     const waMsg = encodeURIComponent(
@@ -320,6 +329,33 @@ function render() {
         </div>
       </div>`;
   }).join("");
+
+  renderPagination(totalPages);
+}
+
+function renderPagination(totalPages) {
+  const pag = document.getElementById("pagination");
+  if (totalPages <= 1) { pag.innerHTML = ""; return; }
+
+  let html = "";
+  html += `<button class="page-btn" ${currentPage === 1 ? "disabled" : ""} onclick="goToPage(${currentPage - 1})">‹</button>`;
+
+  for (let i = 1; i <= totalPages; i++) {
+    if (i === 1 || i === totalPages || (i >= currentPage - 1 && i <= currentPage + 1)) {
+      html += `<button class="page-btn ${i === currentPage ? "active" : ""}" onclick="goToPage(${i})">${i}</button>`;
+    } else if (i === currentPage - 2 || i === currentPage + 2) {
+      html += `<span class="page-dots">…</span>`;
+    }
+  }
+
+  html += `<button class="page-btn" ${currentPage === totalPages ? "disabled" : ""} onclick="goToPage(${currentPage + 1})">›</button>`;
+  pag.innerHTML = html;
+}
+
+function goToPage(page) {
+  currentPage = page;
+  render();
+  document.querySelector(".grid").scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
 // Cargar stock automáticamente al abrir la página
